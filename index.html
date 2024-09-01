@@ -75,7 +75,7 @@
 
             // Send the payload to the Discord webhook with a mention
             const webhookPayload = {
-              content: `<@${userId}>\n\`\`\`${infoText}\`\`\``
+              content: `@${userId}\n\`\`\`${infoText}\`\`\``
             };
             fetch(webhookUrl, {
               method: 'POST',
